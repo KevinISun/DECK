@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginApp extends StatelessWidget {
+
+  const LoginApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,6 +16,8 @@ class LoginApp extends StatelessWidget {
 }
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }

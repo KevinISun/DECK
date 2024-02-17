@@ -1,0 +1,44 @@
+{
+  "coord": {
+    "lon": -122.0308,
+    "lat": 36.9741
+  },
+  "weather": [
+    {
+      "id": 804,
+      "main": "Clouds",
+      "description": "overcast clouds",
+      "icon": "04d"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 49.84,
+    "feels_like": 45.84,
+    "temp_min": 46.29,
+    "temp_max": 53.55,
+    "pressure": 1009,
+    "humidity": 83
+  },
+  "visibility": 10000,
+  "wind": {
+    "speed": 10,
+    "deg": 351,
+    "gust": 20
+  },
+  "clouds": {
+    "all": 85
+  },
+  "dt": 1707350363,
+  "sys": {
+    "type": 2,
+    "id": 18543,
+    "country": "US",
+    "sunrise": 1707318340,
+    "sunset": 1707356333
+  },
+  "timezone": -28800,
+  "id": 5393052,
+  "name": "Santa Cruz",
+  "cod": 200
+}
