@@ -33,7 +33,7 @@ class HomeScreen extends StatelessWidget {
             
           ),
         ],
-        selectedItemColor: Color.fromARGB(255, 30, 187, 231),
+        selectedItemColor: const Color.fromARGB(255, 30, 187, 231),
       )
       
     );
@@ -47,7 +47,7 @@ class HomeScreen extends StatelessWidget {
         fontSize: 24,
         fontFamily: 'Itim',
       ),
-      backgroundColor: Color.fromARGB(255, 30, 187, 231),
+      backgroundColor: const Color.fromARGB(255, 30, 187, 231),
       elevation: 0.0,
     );
   }
