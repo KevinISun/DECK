@@ -6,54 +6,51 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.person),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute<ProfileScreen>(
-                  builder: (context) => ProfileScreen(
-                    appBar: AppBar(
-                      title: const Text('User Profile'),
-                    ),
-                    actions: [
-                      SignedOutAction((context) {
-                        Navigator.of(context).pop();
-                      })
-                    ],
-                    children: [
-                      const Divider(),
-                      Padding(
-                        padding: const EdgeInsets.all(2),
-                        child: AspectRatio(
-                          aspectRatio: 1,
-                          child: Image.asset('icon.jpg'),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },
-          )
-        ],
-        automaticallyImplyLeading: false,
-      ),
+      appBar: appBar(),
       body: Center(
-        child: Column(
+        child: Column( 
           children: [
-            Image.asset('dash.png'),
-            Text(
-              'Welcome!',
-              style: Theme.of(context).textTheme.displaySmall,
-            ),
-            const SignOutButton(),
+            Image.asset('assets/dash.png')
           ],
-        ),
+        )
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add),
+            label: 'Add',
+          ),
+          // sign out button
+          BottomNavigationBarItem(
+            icon: Icon(Icons.logout),
+            label: 'Sign Out',
+            
+          ),
+        ],
+        selectedItemColor: Color.fromARGB(255, 30, 187, 231),
+      )
+      
     );
   }
+  AppBar appBar() {  
+    return AppBar(
+      title: const Text('Welcome to DECK!'),
+      centerTitle: true,
+      titleTextStyle: const TextStyle(
+        color: Colors.white,
+        fontSize: 24,
+        fontFamily: 'Itim',
+      ),
+      backgroundColor: Color.fromARGB(255, 30, 187, 231),
+      elevation: 0.0,
+    );
+  }
+  
+      
 }
