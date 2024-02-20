@@ -1,5 +1,5 @@
 const String createTableItems = '''
-CREATE TABLE clothes.tops (
+CREATE TABLE clothes (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name VARCHAR(255) NOT NULL,
     color VARCHAR(255) NOT NULL,
@@ -7,7 +7,7 @@ CREATE TABLE clothes.tops (
     CHECK (warmth_level >= 1 and warmth_level <= 5)
 );
 
-CREATE TABLE clothes.bottoms (
+CREATE TABLE bottoms (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name VARCHAR(255) NOT NULL,
     color VARCHAR(255) NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE clothes.bottoms (
     waterproof BOOLEAN NOT NULL
 );
 
-CREATE TABLE clothes.outerwear (
+CREATE TABLE outerwear (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name VARCHAR(255) NOT NULL,
     color VARCHAR(255) NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE clothes.outerwear (
     waterproof BOOLEAN NOT NULL
 );
 
-CREATE TABLE clothes.shoes (
+CREATE TABLE shoes (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name VARCHAR(255) NOT NULL,
     color VARCHAR(255) NOT NULL,
