@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "968941252633",
-    "project_id": "deck-181fe",
-    "storage_bucket": "deck-181fe.appspot.com"
+    "project_number": "950692737175",
+    "project_id": "deck-bd96b",
+    "storage_bucket": "deck-bd96b.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:968941252633:android:716ba33d5f72fb67c6ba88",
+        "mobilesdk_app_id": "1:950692737175:android:074d7b79c9772c495439d2",
         "android_client_info": {
           "package_name": "com.example.deck_project"
         }
@@ -15,26 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDlbB5WUjJwoiSwRELYCY_hVVIhC5sxTp4"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:968941252633:android:085a0b4e4b551750c6ba88",
-        "android_client_info": {
-          "package_name": "deck.clothing"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDlbB5WUjJwoiSwRELYCY_hVVIhC5sxTp4"
+          "current_key": "AIzaSyA4FaIF7u-v88O1jiItNj3xMi4JnocL5bI"
         }
       ],
       "services": {

@@ -44,37 +44,37 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyD2f8RXLF7SVksNtGZ2YcIbcDSlL4RLgPw',
-    appId: '1:968941252633:web:a84733a7fd2cca49c6ba88',
-    messagingSenderId: '968941252633',
-    projectId: 'deck-181fe',
-    authDomain: 'deck-181fe.firebaseapp.com',
-    storageBucket: 'deck-181fe.appspot.com',
+    apiKey: 'AIzaSyCU7vrC3Wp0r1v9vytmRteNwkVhYMAozw4',
+    appId: '1:950692737175:web:6902b741389a2af45439d2',
+    messagingSenderId: '950692737175',
+    projectId: 'deck-bd96b',
+    authDomain: 'deck-bd96b.firebaseapp.com',
+    storageBucket: 'deck-bd96b.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDlbB5WUjJwoiSwRELYCY_hVVIhC5sxTp4',
-    appId: '1:968941252633:android:716ba33d5f72fb67c6ba88',
-    messagingSenderId: '968941252633',
-    projectId: 'deck-181fe',
-    storageBucket: 'deck-181fe.appspot.com',
+    apiKey: 'AIzaSyA4FaIF7u-v88O1jiItNj3xMi4JnocL5bI',
+    appId: '1:950692737175:android:074d7b79c9772c495439d2',
+    messagingSenderId: '950692737175',
+    projectId: 'deck-bd96b',
+    storageBucket: 'deck-bd96b.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDCQVyWXIaQE7C5AsuyOq8KzZsIdNEBOjQ',
-    appId: '1:968941252633:ios:4c6141c484a34500c6ba88',
-    messagingSenderId: '968941252633',
-    projectId: 'deck-181fe',
-    storageBucket: 'deck-181fe.appspot.com',
+    apiKey: 'AIzaSyA2cRsZUnqmN3XQyBEPlx_TvxORYl9z37M',
+    appId: '1:950692737175:ios:0985d34d66a15d3c5439d2',
+    messagingSenderId: '950692737175',
+    projectId: 'deck-bd96b',
+    storageBucket: 'deck-bd96b.appspot.com',
     iosBundleId: 'com.example.deckProject',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDCQVyWXIaQE7C5AsuyOq8KzZsIdNEBOjQ',
-    appId: '1:968941252633:ios:c3d48c2d4c4425c0c6ba88',
-    messagingSenderId: '968941252633',
-    projectId: 'deck-181fe',
-    storageBucket: 'deck-181fe.appspot.com',
+    apiKey: 'AIzaSyA2cRsZUnqmN3XQyBEPlx_TvxORYl9z37M',
+    appId: '1:950692737175:ios:303c432110035a165439d2',
+    messagingSenderId: '950692737175',
+    projectId: 'deck-bd96b',
+    storageBucket: 'deck-bd96b.appspot.com',
     iosBundleId: 'com.example.deckProject.RunnerTests',
   );
 }
