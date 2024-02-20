@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.7.10'
+    ext.kotlin_version = '1.9.22'
     repositories {
         google()
         mavenCentral()
@@ -17,6 +17,7 @@ allprojects {
     }
 }
 
+
 rootProject.buildDir = '../build'
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
@@ -30,3 +31,4 @@ tasks.register("clean", Delete) {
 }
 //android.useAndroidX=true
 //android.enableJetifier=true
+
