@@ -1,5 +1,6 @@
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
+import 'weather_widget.dart'; // Import WeatherWidget from its file
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -12,7 +13,10 @@ class HomeScreen extends StatelessWidget {
       body: Center(
         child: Column( 
           children: [
-            Image.asset('assets/dash.png')
+          Padding(
+            padding: EdgeInsets.all(16.0),
+            child: WeatherWidget(),
+          )
           ],
         )
       ),
