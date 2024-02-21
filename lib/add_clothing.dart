@@ -1,6 +1,5 @@
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
-import 'weather_widget.dart'; // Import WeatherWidget from its file
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key});
@@ -16,7 +15,7 @@ class HomeScreen extends StatelessWidget {
               body: Center(
                 child: Column(
                   children: [
-                    Image.asset('assets/dash.png'),
+                    Image.asset('assets/icon.png'),
                   ],
                 ),
               ),
@@ -40,7 +39,7 @@ class HomeScreen extends StatelessWidget {
                   if (index == 1) {
                     // Navigate to the page you want to show when "Add" is pressed
                     Navigator.pushNamed(context,
-                        'lib/add_clothing.dart'); // Replace '/add' with the route name of your add page
+                        '/add'); // Replace '/add' with the route name of your add page
                   }
                 },
               ),
