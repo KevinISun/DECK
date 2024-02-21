@@ -13,10 +13,12 @@ class HomeScreen extends StatelessWidget {
       body: Center(
         child: Column( 
           children: [
+
           Padding(
             padding: EdgeInsets.all(16.0),
             child: WeatherWidget(),
-          )
+          ),
+          Image.asset('assets/dash.png')
           ],
         )
       ),
