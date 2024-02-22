@@ -14,17 +14,20 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: appBar(),
-        body: Center(
+        body: SingleChildScrollView( // Add SingleChildScrollView here
+          child: Center(
             child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.all(16.0),
-              child: WeatherWidget(),
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: WeatherWidget(),
+                ),
+                Image.asset('assets/dash.png'),
+                const SignOutButton(),
+              ],
             ),
-            Image.asset('assets/dash.png'),
-            const SignOutButton(),
-          ],
-        )),
+          ),
+        ),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
@@ -66,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void showModal(BuildContext context) {
     int? selectedValue = 1;
-    List<String> clothTypes = ['Tops', 'Bottoms', 'Shoes', 'outerwear'];
+    List<String> clothTypes = ['Tops', 'Bottoms', 'Shoes', 'Outerwear'];
     List<int> warmthLevels = [1, 2, 3];
     String? selectedType = clothTypes.first;
     String? name = '';
@@ -74,46 +77,47 @@ class _HomeScreenState extends State<HomeScreen> {
     showDialog<void>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: const Text('Edit Cloth Data'), // Optional title for clarity
-        content: Column(
-          mainAxisSize:
-              MainAxisSize.min, // Allow content to grow within constraints
-          crossAxisAlignment: CrossAxisAlignment.start, // Align text to left
+        title: const Text('Edit Wardrobe'), // Optional title for clarity
+        content: SingleChildScrollView( // Wrap the content with SingleChildScrollView
+          child: Column(
+            mainAxisSize: MainAxisSize.min, // Allow content to grow within constraints
+            crossAxisAlignment: CrossAxisAlignment.start, // Align text to left
 
-          children: <Widget>[
-            const Text(
-                'Enter Clothing Name'), // Clear label for the input field
-            TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'Name',
+            children: <Widget>[
+              const Text(
+                  'Enter Clothing Name'), // Clear label for the input field
+              TextFormField(
+                decoration: const InputDecoration(
+                  labelText: 'Name',
+                ),
+                onChanged: (newValue) => setState(() => name = newValue),
               ),
-              onChanged: (newValue) => setState(() => name = newValue),
-            ),
-            const SizedBox(height: 12),
+              const SizedBox(height: 12),
 
-            const Text(
-                'Enter Clothing type'), // Clear label for the input field
-            DropdownMenu<String>(
-              initialSelection: selectedType,
-              onSelected: (newValue) => setState(() => selectedType = newValue),
-              dropdownMenuEntries: clothTypes
-                  .map((type) => DropdownMenuEntry(value: type, label: type))
-                  .toList(),
-            ),
+              const Text(
+                  'Enter Clothing type'), // Clear label for the input field
+              DropdownMenu<String>(
+                initialSelection: selectedType,
+                onSelected: (newValue) => setState(() => selectedType = newValue),
+                dropdownMenuEntries: clothTypes
+                    .map((type) => DropdownMenuEntry(value: type, label: type))
+                    .toList(),
+              ),
 
-            // space it out
-            const SizedBox(height: 12),
-            const Text('Enter Warmth level'),
-            DropdownMenu<int>(
-              initialSelection: selectedValue,
-              onSelected: (newValue) =>
-                  setState(() => selectedValue = newValue),
-              dropdownMenuEntries: warmthLevels
-                  .map((level) =>
-                      DropdownMenuEntry(value: level, label: level.toString()))
-                  .toList(),
-            ),
-          ],
+              // space it out
+              const SizedBox(height: 12),
+              const Text('Enter Warmth level'),
+              DropdownMenu<int>(
+                initialSelection: selectedValue,
+                onSelected: (newValue) =>
+                    setState(() => selectedValue = newValue),
+                dropdownMenuEntries: warmthLevels
+                    .map((level) =>
+                        DropdownMenuEntry(value: level, label: level.toString()))
+                    .toList(),
+              ),
+            ],
+          ),
         ),
         actions: <TextButton>[
           TextButton(
@@ -135,4 +139,5 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
 }
