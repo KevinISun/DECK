@@ -11,6 +11,7 @@ class _WeatherWidgetState extends State<WeatherWidget> {
   String weatherData = '';
   IconData weatherIcon = Icons.error; // Default icon in case of error
   Color boxColor = Colors.white; // Default box color
+  
   @override
   void initState() {
     super.initState();
@@ -33,29 +34,22 @@ class _WeatherWidgetState extends State<WeatherWidget> {
 
         // Select icon based on temperature range and weather description
         if (temperature >= 30 && temperature <= 40) {
-          // Colder icon
           weatherIcon = Icons.ac_unit;
         } else {
-          // Default icon for other temperature ranges
           weatherIcon = Icons.wb_sunny;
         }
 
-        // Convert description to lowercase for case-insensitive comparison
         description = description.toLowerCase();
 
-        // Handle different weather descriptions
         if (description.contains('clear')) {
-          // Clear sky icon
           weatherIcon = Icons.wb_sunny;
         } else if (description.contains('cloud') || description.contains('overcast')) {
-          // Cloudy icon
           weatherIcon = Icons.cloud;
         } else if (description.contains('rain')) {
-          // Rainy icon
           weatherIcon = Icons.waves;
-        } // Add more cases as needed for different weather conditions
+        }
         setState(() {
-          weatherData = 'Temperature: $temperature\nDescription: $description';
+          weatherData = 'Temperature: $temperature°F\nDescription: $description';
         });
       } else {
         throw Exception('Failed to load weather data');
@@ -69,27 +63,55 @@ class _WeatherWidgetState extends State<WeatherWidget> {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.topLeft,
-      padding: EdgeInsets.all(16.0),
+      // padding: EdgeInsets.all(16.0),
       child: Row(
         children: [
-          // Display weather icon
           Icon(
             weatherIcon,
             size: 48.0,
-            color: Colors.blue, // Customize icon color as needed
+            color: Colors.blue,
           ),
           SizedBox(width: 16.0),
-          // Display weather data within a box with customized styling
-          Container(
-            padding: EdgeInsets.all(12.0), // Adjust padding as needed
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black, width: 2.0), // Border properties
-              borderRadius: BorderRadius.circular(8.0), // Border radius to create rounded corners
-              color: boxColor, // Custom box color based on weather description
-            ),
-            child: Text(
-              weatherData,
-              style: TextStyle(fontSize: 16.0),
+          Flexible(
+            child: SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.all(16.0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 2,
+                      blurRadius: 7,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                  color: boxColor,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center, // Align to the center horizontally
+                  children: [
+                    Text(
+                      'Weather',
+                      style: TextStyle(
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue,
+                      ),
+                    ),
+                    SizedBox(height: 8.0),
+                    Divider(
+                      color: Colors.blue,
+                      thickness: 1.0,
+                    ),
+                    SizedBox(height: 8.0),
+                    Text(
+                      '$weatherData',
+                      style: TextStyle(fontSize: 18.0),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ],
