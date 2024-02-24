@@ -4,6 +4,7 @@ import 'package:sqflite/sqflite.dart' as sql;
 import 'create_table.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:deck_project/models/clothes_model.dart';
 
 import 'dart:developer' as developer;
 
@@ -34,43 +35,38 @@ class SQLHelper {
 //     warmth_level INTEGER NOT NULL
 //     CHECK (warmth_level >= 1 and warmth_level <= 5)
 // );
-  static Future<int> createItem(String name, String color, int warmth_level) async {
-    developer.log('Creating item: $name, $color, $warmth_level');
+  static Future<int> createItem(Clothes clothes) async {
+    
     final db = await SQLHelper.db();
-    final data = {'name': name, 'color': color, 'warmth_level': warmth_level};
-
-    final id = await db.insert('clothes', data,
+    final id = await db.insert('clothes', clothes.toMap(),
         conflictAlgorithm: sql.ConflictAlgorithm.replace);
     return id;
   }
 
-  static Future<List<Map<String, dynamic>>> getItems() async {
+  static Future<List<Clothes>> getItems() async {
     final db = await SQLHelper.db();
-    return db.query('clothes', orderBy: 'id');
+    final List<Map<String, dynamic>> maps = await db.query('clothes');
+    return List.generate(maps.length, (i) {
+      return Clothes(
+        id: maps[i]['id'],
+        name: maps[i]['name'],
+        color: maps[i]['color'],
+        warmthLevel: maps[i]['warmth_level'],
+      );
+    });
+    
   }
 
-  static Future<List<Map<String, dynamic>>> getItemWithId(int id) async {
+  static Future<int> updateItem(Clothes clothes) async {
     final db = await SQLHelper.db();
-
-    return db.query('clothes', where: 'id = ?', whereArgs: [id], limit: 1);
+    return await db.update("clothes", clothes.toMap(),
+        where: 'id = ?', whereArgs: [clothes.id],
+        conflictAlgorithm: sql.ConflictAlgorithm.replace);
   }
 
-  static Future<int> updateItem(
-      int id, String name, String color, int warmth_level) async {
+  static Future<int> deleteItem(Clothes clothes) async {
     final db = await SQLHelper.db();
-    final data = {'name': name, 'color': color, 'warmth_level': warmth_level};
-    final result =
-        await db.update('clothes', data, where: 'id = ?', whereArgs: [id]);
-    return result;
-  }
-
-  static Future<void> deleteItem(int id) async {
-    final db = await SQLHelper.db();
-    try {
-      await db.delete('clothes', where: 'id = ?', whereArgs: [id]);
-    } catch (e) {
-      debugPrint("Something went wrong when deleting item: $e");
-    }
+    return await db.delete('clothes', where: 'id = ?', whereArgs: [clothes.id]);
   }
 
   static Future<void> printAllItems() async {
@@ -84,5 +80,10 @@ class SQLHelper {
   static Future<void> deleteAllItems() async {
     final db = await SQLHelper.db();
     await db.delete('clothes');
+  }
+
+  static Future<void> deleteAllTables() async {
+    final db = await SQLHelper.db();
+    await db.execute('DROP TABLE IF EXISTS clothes');
   }
 }

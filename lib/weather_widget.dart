@@ -91,7 +91,7 @@ class _WeatherWidgetState extends State<WeatherWidget> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center, // Align to the center horizontally
                   children: [
-                    Text(
+                    const Text(
                       'Weather',
                       style: TextStyle(
                         fontSize: 24.0,
@@ -99,12 +99,12 @@ class _WeatherWidgetState extends State<WeatherWidget> {
                         color: Colors.blue,
                       ),
                     ),
-                    SizedBox(height: 8.0),
+                    const SizedBox(height: 8.0),
                     Divider(
                       color: Colors.blue,
                       thickness: 1.0,
                     ),
-                    SizedBox(height: 8.0),
+                    const SizedBox(height: 8.0),
                     Text(
                       '$weatherData',
                       style: TextStyle(fontSize: 18.0),
