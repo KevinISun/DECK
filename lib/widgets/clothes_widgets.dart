@@ -12,6 +12,20 @@ class ClothesWidget extends StatelessWidget {
     required this.onLongPress,
   }) : super(key: key);
 
+  // String _getClothesIcon(Clothes clothes) {
+  //   switch(clothes.type) {
+  //     case "Tops":
+  //       return 'assets/tshirt.png';
+  //     case "Bottoms":
+  //       return 'assets/pants.png';
+  //     case "Outerwear":
+  //       return 'assets/outerwear.png';
+  //     case "Shoes":
+  //       return 'assets/shoes.png';
+  //   }
+  //   return 'assets/tshirt.png';
+  // }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -28,6 +42,7 @@ class ClothesWidget extends StatelessWidget {
               children: [
                 // insert an shirt icon
                 const Icon(Icons.shopping_basket_sharp, size: 40),
+                // Image.asset(_getClothesIcon(clothes)),
                 Text(
                   clothes.name,
                   style: const TextStyle(
