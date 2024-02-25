@@ -133,15 +133,15 @@ class _HomeScreenState extends State<HomeScreen> {
               print(selectedValue);
               print(selectedType);
               print(name);
-              //print()
-              String nonNullableName = name ?? "defaultName";
-              int nonNullableSelectedValue = selectedValue ?? 0;
+              String nonNullableName = name ?? "Clothes Name";
+              int nonNullableSelectedValue = selectedValue ?? 1;
               Clothes clothes = Clothes(
                   name: nonNullableName,
                   color: 'black',
-                  warmthLevel: nonNullableSelectedValue);
+                  warmthLevel: nonNullableSelectedValue,
+                  type: selectedType ?? 'Tops');
               SQLHelper.createItem(clothes);
-
+              
               Navigator.pop(context);
             },
             child: const Text('Save'), // Clearer action text

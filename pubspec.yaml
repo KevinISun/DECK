@@ -36,7 +36,6 @@ dependencies:
   firebase_ui_oauth_google: ^1.2.17
   flutter:
     sdk: flutter
-  flutter_icons: ^1.1.0
   google_sign_in: ^6.2.1
   http: ^0.13.0 # Specify the version required by firebase
   test: ^1.16.9

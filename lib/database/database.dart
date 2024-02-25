@@ -2,9 +2,8 @@ import 'package:sqflite/sqflite.dart' as sql;
 //import 'package:path/path.dart';
 //import 'package:sqflite/sqlite_api.dart';
 import 'create_table.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:deck_project/models/clothes_model.dart';
+
 
 import 'dart:developer' as developer;
 
@@ -16,9 +15,9 @@ class SQLHelper {
   }
 
   static Future<sql.Database> db() async {
-    developer.log('Trying to open database');
+    
     final db = sql.openDatabase(
-      'clothes.db',
+      'data.db',
       version: 1,
       onCreate: (sql.Database database, int version) async {
         await createTables(database);
@@ -36,11 +35,9 @@ class SQLHelper {
 //     CHECK (warmth_level >= 1 and warmth_level <= 5)
 // );
   static Future<int> createItem(Clothes clothes) async {
-    
     final db = await SQLHelper.db();
-    final id = await db.insert('clothes', clothes.toMap(),
+    return await db.insert('clothes', clothes.toMap(),
         conflictAlgorithm: sql.ConflictAlgorithm.replace);
-    return id;
   }
 
   static Future<List<Clothes>> getItems() async {
@@ -52,15 +49,16 @@ class SQLHelper {
         name: maps[i]['name'],
         color: maps[i]['color'],
         warmthLevel: maps[i]['warmth_level'],
+        type: maps[i]['type'],
       );
     });
-    
   }
 
   static Future<int> updateItem(Clothes clothes) async {
     final db = await SQLHelper.db();
     return await db.update("clothes", clothes.toMap(),
-        where: 'id = ?', whereArgs: [clothes.id],
+        where: 'id = ?',
+        whereArgs: [clothes.id],
         conflictAlgorithm: sql.ConflictAlgorithm.replace);
   }
 

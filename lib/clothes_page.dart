@@ -42,6 +42,30 @@ class _ClothesPageState extends State<ClothesPage>{
               clothes: snapshot.data![index],
               onTap: (){print('Tapped');},
               onLongPress: (){print('Long Pressed');},
+              onButtonPressed: () async {
+
+                showDialog(context: context, builder: (context){
+                  return AlertDialog(
+                    title: const Text('Delete?'),
+                    content: const Text('Are you sure you want to delete this item?'),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.pop(context),
+                        child: const Text('Cancel'),
+                      ),
+                      TextButton(
+                        onPressed: () async {
+                          await SQLHelper.deleteItem(snapshot.data![index]);
+                          setState(() {});
+                          Navigator.pop(context);
+                        },
+                        child: const Text('Delete'),
+                      ),
+                    ],
+                  );
+                
+                });
+              },
             )
           );
         },

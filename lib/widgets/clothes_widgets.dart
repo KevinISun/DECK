@@ -1,15 +1,18 @@
 import 'package:deck_project/models/clothes_model.dart';
 import 'package:flutter/material.dart';
+import 'package:deck_project/database/database.dart';
 
 class ClothesWidget extends StatelessWidget {
   final Clothes clothes;
   final VoidCallback onTap;
   final VoidCallback onLongPress;
+  final VoidCallback onButtonPressed;
   const ClothesWidget({
     Key? key,
     required this.clothes,
     required this.onTap,
     required this.onLongPress,
+    required this.onButtonPressed,
   }) : super(key: key);
 
   // String _getClothesIcon(Clothes clothes) {
@@ -51,6 +54,21 @@ class ClothesWidget extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 10),
+                // button to delete
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child:
+                    ElevatedButton(
+                      onPressed: () {
+                        onButtonPressed();
+                      },
+                      
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red,
+                      ),
+                      child: const Text('Delete'),
+                    ),
+                ),
                 Align(
                   alignment: Alignment.bottomLeft,
                   child: Text(
