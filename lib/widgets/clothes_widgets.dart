@@ -35,14 +35,14 @@ class ClothesWidget extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 6),
         child: Card(
           elevation: 2,
+          color: const Color.fromARGB(255, 30, 187, 231), // Set the color to blue
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                // insert an shirt icon
-                const Icon(Icons.shopping_basket_sharp, size: 40),
-                // Image.asset(_getClothesIcon(clothes)),
+                // insert a shirt icon
+                const Icon(Icons.shopping_basket_sharp, size: 60),
                 Text(
                   clothes.name,
                   style: const TextStyle(
@@ -50,20 +50,23 @@ class ClothesWidget extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 8),
-                Text(
-                  clothes.color,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
+                const SizedBox(height: 10),
+                Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Text(
+                    clothes.color,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ],
             ),
-          )
-        )
+          ),
+        ),
       ),
-      
     );
   }
 }
