@@ -138,7 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
               int nonNullableSelectedValue = selectedValue ?? 0;
               Clothes clothes = Clothes(
                   name: nonNullableName,
-                  color: 'black',
+                  color: 'white',
                   warmthLevel: nonNullableSelectedValue);
               SQLHelper.createItem(clothes);
 

@@ -18,7 +18,14 @@ class _ClothesPageState extends State<ClothesPage>{
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Clothes'),
+        title: const Text(
+            'Clothes',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+            fontFamily: 'Itim',
+          )
+        ),
         centerTitle: true,
       ),
       
