@@ -3,7 +3,6 @@ import 'package:sqflite/sqflite.dart' as sql;
 //import 'package:sqflite/sqlite_api.dart';
 import 'create_table.dart';
 import 'package:deck_project/models/clothes_model.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 

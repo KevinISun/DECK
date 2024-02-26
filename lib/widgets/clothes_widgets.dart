@@ -1,6 +1,5 @@
 import 'package:deck_project/models/clothes_model.dart';
 import 'package:flutter/material.dart';
-import 'package:deck_project/database/database.dart';
 
 class ClothesWidget extends StatelessWidget {
   final Clothes clothes;
@@ -28,9 +27,38 @@ class ClothesWidget extends StatelessWidget {
     }
     return 'assets/tshirt.png';
   }
+  Color _getBackgroundColor(Clothes clothes){
+    // return colors
+    switch(clothes.color){
+      case "red":
+        return Colors.red;
+      case "blue":
+        return Colors.blue;
+      case "green":
+        return Colors.green;
+      case "yellow":
+        return Colors.yellow;
+      case "black":
+        return Colors.black;
+      case "white":
+        return Colors.white;
+      case "grey":
+        return Colors.grey;
+      case "orange":
+        return Colors.orange;
+      case "purple":
+        return Colors.purple;
+      case "pink":
+        return Colors.pink;
+      default:
+        return Colors.white;
+    }
+      
+  }
 
   @override
   Widget build(BuildContext context) {
+   
     return InkWell(
       onLongPress: onLongPress,
       onTap: onTap,
@@ -38,7 +66,7 @@ class ClothesWidget extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 6),
         child: Card(
           elevation: 2,
-          color: Color.fromARGB(255, 133, 175, 236),
+          color: _getBackgroundColor(clothes),
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
             child: Row(
@@ -61,6 +89,8 @@ class ClothesWidget extends StatelessWidget {
                         style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 68, 70, 71),
+                         
                         ),
                       ),
                       Text(
