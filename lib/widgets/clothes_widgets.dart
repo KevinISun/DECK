@@ -31,55 +31,57 @@ class ClothesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return InkWell(
       onLongPress: onLongPress,
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 6),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 6),
         child: Card(
           elevation: 2,
-          color: const Color.fromARGB(255, 30, 187, 231), // Set the color to blue
+          color: Color.fromARGB(255, 133, 175, 236),
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // insert a shirt icon
-              
-                Image.asset(_getClothesIcon(clothes)),
-                Text(
-                  clothes.name,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+                Expanded( // Expand the image
+                  child: Image.asset(
+                    _getClothesIcon(clothes),
+                    height: 150,
+                    width: 150,
                   ),
                 ),
-                const SizedBox(height: 10),
-                // button to delete
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child:
-                    ElevatedButton(
-                      onPressed: () {
-                        onButtonPressed();
-                      },
-                      
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red,
+                SizedBox(width: 16),
+                Expanded( // Expand the column containing text
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        clothes.name,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                      child: const Text('Delete'),
-                    ),
-                ),
-                Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Text(
-                    clothes.color,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
+                      const SizedBox(height: 10),
+                      ElevatedButton(
+                        onPressed: () {
+                          onButtonPressed();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color.fromARGB(255, 243, 135, 127),
+                        ),
+                        child: const Text('Delete'),
+                      ),
+                      Text(
+                        clothes.color,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -90,4 +92,3 @@ class ClothesWidget extends StatelessWidget {
     );
   }
 }
-
