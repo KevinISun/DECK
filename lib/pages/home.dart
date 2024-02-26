@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.all(16.0),
                   child: WeatherWidget(),
                 ),
-                Image.asset('assets/dash.png'),
+                Image.asset('assets/penguin.jpeg'),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
