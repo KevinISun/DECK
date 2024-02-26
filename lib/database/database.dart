@@ -4,7 +4,6 @@ import 'package:sqflite/sqflite.dart' as sql;
 import 'create_table.dart';
 import 'package:deck_project/models/clothes_model.dart';
 
-
 import 'dart:developer' as developer;
 
 class SQLHelper {
@@ -15,7 +14,6 @@ class SQLHelper {
   }
 
   static Future<sql.Database> db() async {
-    
     final db = sql.openDatabase(
       'data.db',
       version: 1,
@@ -67,14 +65,6 @@ class SQLHelper {
     return await db.delete('clothes', where: 'id = ?', whereArgs: [clothes.id]);
   }
 
-  static Future<void> printAllItems() async {
-    final db = await SQLHelper.db();
-    final items = await db.query('clothes');
-    items.forEach((item) {
-      print(item);
-    });
-  }
-
   static Future<void> deleteAllItems() async {
     final db = await SQLHelper.db();
     await db.delete('clothes');
@@ -83,5 +73,34 @@ class SQLHelper {
   static Future<void> deleteAllTables() async {
     final db = await SQLHelper.db();
     await db.execute('DROP TABLE IF EXISTS clothes');
+  }
+
+  static Future<List<Clothes>> generateOutfits() async {
+    final db = await SQLHelper.db();
+
+    // Create a list to store retrieved clothes
+    final List<Map<String, dynamic>> outfits = [];
+
+    // Get distinct types to ensure variety
+    final List<String> types = ['Tops', 'Bottoms', 'Outerwear', 'Shoes'];
+
+    for (String type in types) {
+      Map<String, dynamic> item = await db
+          .rawQuery(
+              "SELECT * FROM clothes WHERE type = ? ORDER BY RANDOM() LIMIT 1",
+              [type])
+          .then((maps) => maps.first);
+      outfits.add(item);
+    }
+
+    return List.generate(outfits.length, (i) {
+      return Clothes(
+        id: outfits[i]['id'],
+        name: outfits[i]['name'],
+        color: outfits[i]['color'],
+        warmthLevel: outfits[i]['warmth_level'],
+        type: outfits[i]['type'],
+      );
+    });
   }
 }

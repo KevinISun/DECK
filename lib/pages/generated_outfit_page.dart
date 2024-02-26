@@ -23,7 +23,7 @@ class _OutfitPageState extends State<OutfitPage>{
       ),
       
       body: FutureBuilder<List<Clothes>>(
-        future: SQLHelper.getItems(),
+        future: SQLHelper.generateOutfits(),
         builder: (context, snapshot){
           if(snapshot.connectionState == ConnectionState.waiting){
             return const Center(child: CircularProgressIndicator());
