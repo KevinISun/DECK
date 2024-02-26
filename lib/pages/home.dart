@@ -1,9 +1,10 @@
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
-import 'weather_widget.dart'; // Import WeatherWidget from its file
-import 'database/database.dart';
-import 'models/clothes_model.dart';
+import '../widgets/weather_widget.dart'; // Import WeatherWidget from its file
+import '../database/database.dart';
+import '../models/clothes_model.dart';
 import 'clothes_page.dart';
+import 'generated_outfit_page.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -17,16 +18,32 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: appBar(),
-        body: SingleChildScrollView( // Add SingleChildScrollView here
+        body: SingleChildScrollView(
+          // Add SingleChildScrollView here
           child: Center(
             child: Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: WeatherWidget(),
                 ),
                 Image.asset('assets/dash.png'),
-                const SignOutButton(),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: FloatingActionButton.extended(
+                          onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const OutfitPage())),
+                          label: const Text('Generate Clothes'),
+                          icon: const Icon(Icons.shuffle),
+                        ),
+                      ),
+                      const SignOutButton(),
+                    ]),
               ],
             ),
           ),
@@ -51,9 +68,10 @@ class _HomeScreenState extends State<HomeScreen> {
           onTap: (int index) {
             if (index == 1) {
               showModal(context);
-            }else if (index == 2) {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const ClothesPage()));
-            }else if (index == 0) {
+            } else if (index == 2) {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const ClothesPage()));
+            } else if (index == 0) {
               Navigator.pushNamed(context, '/');
             }
           },
@@ -85,9 +103,11 @@ class _HomeScreenState extends State<HomeScreen> {
       context: context,
       builder: (BuildContext context) => AlertDialog(
         title: const Text('Edit Wardrobe'), // Optional title for clarity
-        content: SingleChildScrollView( // Wrap the content with SingleChildScrollView
+        content: SingleChildScrollView(
+          // Wrap the content with SingleChildScrollView
           child: Column(
-            mainAxisSize: MainAxisSize.min, // Allow content to grow within constraints
+            mainAxisSize:
+                MainAxisSize.min, // Allow content to grow within constraints
             crossAxisAlignment: CrossAxisAlignment.start, // Align text to left
 
             children: <Widget>[
@@ -105,7 +125,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   'Enter Clothing type'), // Clear label for the input field
               DropdownMenu<String>(
                 initialSelection: selectedType,
-                onSelected: (newValue) => setState(() => selectedType = newValue),
+                // set the height lower
+                onSelected: (newValue) =>
+                    setState(() => selectedType = newValue),
                 dropdownMenuEntries: clothTypes
                     .map((type) => DropdownMenuEntry(value: type, label: type))
                     .toList(),
@@ -119,8 +141,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 onSelected: (newValue) =>
                     setState(() => selectedValue = newValue),
                 dropdownMenuEntries: warmthLevels
-                    .map((level) =>
-                        DropdownMenuEntry(value: level, label: level.toString()))
+                    .map((level) => DropdownMenuEntry(
+                        value: level, label: level.toString()))
                     .toList(),
               ),
             ],
@@ -141,7 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   warmthLevel: nonNullableSelectedValue,
                   type: selectedType ?? 'Tops');
               SQLHelper.createItem(clothes);
-              
+
               Navigator.pop(context);
             },
             child: const Text('Save'), // Clearer action text
@@ -154,6 +176,4 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-  
-
 }

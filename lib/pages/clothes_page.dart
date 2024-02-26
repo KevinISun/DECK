@@ -1,9 +1,9 @@
 
 import 'package:flutter/material.dart';
-import 'database/database.dart';
-import 'models/clothes_model.dart';
+import '../database/database.dart';
+import '../models/clothes_model.dart';
 
-import 'widgets/clothes_widgets.dart';
+import '../widgets/clothes_widgets.dart';
 
 class ClothesPage extends StatefulWidget {
   const ClothesPage({Key? key}) : super(key: key);
