@@ -15,7 +15,7 @@ class ClothesWidget extends StatelessWidget {
   }) : super(key: key);
 
   String _getClothesIcon(Clothes clothes) {
-    switch(clothes.type) {
+    switch (clothes.type) {
       case "Tops":
         return 'assets/tshirt.png';
       case "Bottoms":
@@ -27,9 +27,10 @@ class ClothesWidget extends StatelessWidget {
     }
     return 'assets/tshirt.png';
   }
-  Color _getBackgroundColor(Clothes clothes){
+
+  Color _getBackgroundColor(Clothes clothes) {
     // return colors
-    switch(clothes.color){
+    switch (clothes.color) {
       case "red":
         return Colors.red;
       case "blue":
@@ -53,75 +54,81 @@ class ClothesWidget extends StatelessWidget {
       default:
         return Colors.white;
     }
-      
   }
 
   @override
   Widget build(BuildContext context) {
-   
     return InkWell(
       onLongPress: onLongPress,
       onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 6),
-        child: Card(
-          elevation: 2,
-          color: _getBackgroundColor(clothes),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded( // Expand the image
-                  child: Image.asset(
-                    _getClothesIcon(clothes),
-                    height: 150,
-                    width: 150,
+        child: Container(
+          decoration: BoxDecoration(
+            border:
+                Border.all(color: Colors.black, width: 1), // Add border here
+          ),
+          child: Card(
+            elevation: 2,
+            color: _getBackgroundColor(clothes),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    // Expand the image
+                    child: Image.asset(
+                      _getClothesIcon(clothes),
+                      height: 150,
+                      width: 150,
+                    ),
                   ),
-                ),
-                SizedBox(width: 16),
-                Expanded( // Expand the column containing text
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        clothes.name,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 68, 70, 71),
-                         
+                  SizedBox(width: 16),
+                  Expanded(
+                    // Expand the column containing text
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          clothes.name,
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 68, 70, 71),
+                          ),
                         ),
-                      ),
-                      Text(
-                        clothes.warmthLevel.toString(),
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                        Text(
+                          clothes.warmthLevel.toString(),
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 10),
-                      ElevatedButton(
-                        onPressed: () {
-                          onButtonPressed();
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromARGB(255, 243, 135, 127),
+                        const SizedBox(height: 10),
+                        ElevatedButton(
+                          onPressed: () {
+                            onButtonPressed();
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor:
+                                const Color.fromARGB(255, 243, 135, 127),
+                          ),
+                          child: const Text('Delete'),
                         ),
-                        child: const Text('Delete'),
-                      ),
-                      Text(
-                        clothes.color,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                        Text(
+                          clothes.color,
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
