@@ -96,13 +96,15 @@ class _HomeScreenState extends State<HomeScreen> {
     int? selectedValue = 1;
     List<String> clothTypes = ['Tops', 'Bottoms', 'Shoes', 'Outerwear'];
     List<int> warmthLevels = [1, 2, 3];
+    List<String> colors = ['black', 'white', 'red', 'blue', 'green', 'yellow', 'pink', 'grey']; // Add more colors if needed
+    String? selectedColor = colors.first;
     String? selectedType = clothTypes.first;
     String? name = '';
 
     showDialog<void>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: const Text('Edit Wardrobe'), // Optional title for clarity
+        title: const Text('Add New Clothes'), // Optional title for clarity
         content: SingleChildScrollView(
           // Wrap the content with SingleChildScrollView
           child: Column(
@@ -135,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
               // space it out
               const SizedBox(height: 12),
-              const Text('Enter Warmth level'),
+              const Text('Warmth level'),
               DropdownMenu<int>(
                 initialSelection: selectedValue,
                 onSelected: (newValue) =>
@@ -143,6 +145,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 dropdownMenuEntries: warmthLevels
                     .map((level) => DropdownMenuEntry(
                         value: level, label: level.toString()))
+                    .toList(),
+              ),
+              
+              const SizedBox(height: 12),
+              const Text('Color'),
+              DropdownMenu<String>(
+                initialSelection: selectedColor,
+                onSelected: (newValue) =>
+                    setState(() => selectedColor = newValue),
+                dropdownMenuEntries: colors
+                    .map((color) => DropdownMenuEntry(
+                        value: color, label: color))
                     .toList(),
               ),
             ],
@@ -159,7 +173,7 @@ class _HomeScreenState extends State<HomeScreen> {
               int nonNullableSelectedValue = selectedValue ?? 1;
               Clothes clothes = Clothes(
                   name: nonNullableName,
-                  color: 'black',
+                  color: selectedColor ?? 'black',
                   warmthLevel: nonNullableSelectedValue,
                   type: selectedType ?? 'Tops');
               SQLHelper.createItem(clothes);

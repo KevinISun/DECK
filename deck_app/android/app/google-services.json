@@ -1,0 +1,47 @@
+{
+    "project_info": {
+        "project_number": "582880660182",
+        "project_id": "deck-b03aa",
+        "storage_bucket": "deck-b03aa.appspot.com"
+    },
+    "client": [
+        {
+            "client_info": {
+                "mobilesdk_app_id": "1:582880660182:android:0a6c937aebd101c6451777",
+                "android_client_info": {
+                    "package_name": "com.example.deck_project"
+                }
+            },
+            "oauth_client": [
+                {
+                    "client_id": "582880660182-muer0ufj40hs9teeuq4feiqvrnj3rq8t.apps.googleusercontent.com",
+                    "client_type": 1,
+                    "android_info": {
+                        "package_name": "com.example.deck_project",
+                        "certificate_hash": "16566ace38422845f9ace81886740541fa67f09e"
+                    }
+                },
+                {
+                    "client_id": "582880660182-ovl48m13r2r72vbi7dsrjqimaknsl6sa.apps.googleusercontent.com",
+                    "client_type": 3
+                }
+            ],
+            "api_key": [
+                {
+                    "current_key": "AIzaSyA65OhRzvX4ZPQznsbrmOaV3A7_W4vOs1s"
+                }
+            ],
+            "services": {
+                "appinvite_service": {
+                    "other_platform_oauth_client": [
+                        {
+                            "client_id": "582880660182-ovl48m13r2r72vbi7dsrjqimaknsl6sa.apps.googleusercontent.com",
+                            "client_type": 3
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "configuration_version": "1"
+}
