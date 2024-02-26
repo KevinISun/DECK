@@ -63,13 +63,20 @@ class ClothesWidget extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                      Text(
+                        clothes.warmthLevel.toString(),
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                       const SizedBox(height: 10),
                       ElevatedButton(
                         onPressed: () {
                           onButtonPressed();
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(255, 243, 135, 127),
+                          backgroundColor: const Color.fromARGB(255, 243, 135, 127),
                         ),
                         child: const Text('Delete'),
                       ),

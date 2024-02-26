@@ -166,9 +166,7 @@ class _HomeScreenState extends State<HomeScreen> {
           TextButton(
             onPressed: () {
               // Handle validation, input processing, and closing the modal as needed
-              print(selectedValue);
-              print(selectedType);
-              print(name);
+
               String nonNullableName = name ?? "Clothes Name";
               int nonNullableSelectedValue = selectedValue ?? 1;
               Clothes clothes = Clothes(
@@ -177,7 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   warmthLevel: nonNullableSelectedValue,
                   type: selectedType ?? 'Tops');
               SQLHelper.createItem(clothes);
-
+              
               Navigator.pop(context);
             },
             child: const Text('Save'), // Clearer action text

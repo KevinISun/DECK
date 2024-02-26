@@ -3,10 +3,22 @@ import 'package:sqflite/sqflite.dart' as sql;
 //import 'package:sqflite/sqlite_api.dart';
 import 'create_table.dart';
 import 'package:deck_project/models/clothes_model.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 import 'dart:developer' as developer;
 
 class SQLHelper {
+  static Future<http.Response> getWeatherData() async {
+      const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
+      const CITY = "Santa Cruz";
+      const COUNTRY = "US";
+      const apiKey = 'bbb3c38ddd6eb052bdddee16a6ca50b1';
+      const apiUrl = '$BASE_URL?appid=$apiKey&q=$CITY,$COUNTRY&units=imperial';
+
+      return await http.get(Uri.parse(apiUrl));
+  }
   // Creates the tables
   static Future<void> createTables(sql.Database database) async {
     // create table items is the table thing
@@ -75,8 +87,22 @@ class SQLHelper {
     await db.execute('DROP TABLE IF EXISTS clothes');
   }
 
+  // generates an outfit by selecting
   static Future<List<Clothes>> generateOutfits() async {
     final db = await SQLHelper.db();
+    final response = await SQLHelper.getWeatherData();
+    final data = jsonDecode(response.body);
+    
+    final temperature = data['main']['temp'];
+    // String description = data['weather'][0]['description'];
+
+    // temperature under 50 degrees makes warmth level 1, 50-70 warm level 2, 70 above is warm level 3
+    int warmthLevel = 1;
+    if (temperature >= 50 && temperature < 70) {
+      warmthLevel = 2;
+    } else if (temperature >= 70) {
+      warmthLevel = 3;
+    }
 
     // Create a list to store retrieved clothes
     final List<Map<String, dynamic>> outfits = [];
@@ -87,8 +113,8 @@ class SQLHelper {
     for (String type in types) {
       Map<String, dynamic> item = await db
           .rawQuery(
-              "SELECT * FROM clothes WHERE type = ? ORDER BY RANDOM() LIMIT 1",
-              [type])
+              "SELECT * FROM clothes WHERE type = ? and warmth_level = ? ORDER BY RANDOM() LIMIT 1",
+              [type, warmthLevel])
           .then((maps) => maps.first);
       outfits.add(item);
     }
@@ -103,4 +129,6 @@ class SQLHelper {
       );
     });
   }
+  
+
 }
